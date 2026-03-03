@@ -44,7 +44,6 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
 
-    // Folosim un TAG constant pentru a găsi ușor logurile în Logcat
     private static final String TAG = "Lifecycle_MA2";
 
     @Override
