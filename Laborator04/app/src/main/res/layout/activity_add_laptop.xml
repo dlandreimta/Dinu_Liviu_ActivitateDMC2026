@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Configurare Laptop"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="#212121"
+                    android:layout_marginBottom="24dp"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Model Dispozitiv" android:textStyle="bold" android:textColor="#757575"/>
+                <EditText
+                    android:id="@+id/etModel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Ex: Dell XPS 15"
+                    android:backgroundTint="#2196F3"
+                    android:layout_marginBottom="16dp"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Capacitate RAM" android:textStyle="bold" android:textColor="#757575"/>
+                <Spinner
+                    android:id="@+id/spRam"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@android:drawable/btn_dropdown"/>
+
+                <Switch
+                    android:id="@+id/swKeyboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tastatură Iluminată RGB"
+                    android:paddingVertical="12dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tehnologie Ecran" android:textStyle="bold" android:textColor="#757575"/>
+                <RadioGroup
+                    android:id="@+id/rgScreenType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+                    <RadioButton android:id="@+id/rbLcd" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LCD" android:layout_marginEnd="24dp"/>
+                    <RadioButton android:id="@+id/rbOled" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="OLED"/>
+                </RadioGroup>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Evaluare Performanță" android:textStyle="bold" android:textColor="#757575"/>
+                <RatingBar
+                    android:id="@+id/rbPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:isIndicator="false"
+                    android:numStars="5"
+                    android:stepSize="1"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="32dp"/>
+
+                <Button
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="SALVEAZĂ ÎN BAZA DE DATE"
+                    android:backgroundTint="#4CAF50"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    app:cornerRadius="8dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

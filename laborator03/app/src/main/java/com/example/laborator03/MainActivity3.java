@@ -13,8 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity3 extends AppCompatActivity {
-    int n1, n2; // Variabilele primite
-
+    int n1, n2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

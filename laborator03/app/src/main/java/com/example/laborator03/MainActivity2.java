@@ -49,31 +49,31 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.i(TAG, "onStart apelat (Info)"); // Pasul 3: Log Info
+        Log.i(TAG, "onStart apelat (Info)");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume apelat (Debug)"); // Pasul 3: Log Debug
+        Log.d(TAG, "onResume apelat (Debug)");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.w(TAG, "onPause apelat (Warning)"); // Pasul 3: Log Warning
+        Log.w(TAG, "onPause apelat (Warning)");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e(TAG, "onStop apelat (Error)"); // Pasul 3: Log Error
+        Log.e(TAG, "onStop apelat (Error)");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.v(TAG, "onDestroy apelat (Verbose)"); // Pasul 3: Log Verbose
+        Log.v(TAG, "onDestroy apelat (Verbose)");
     }
 
     @Override
@@ -86,7 +86,6 @@ public class MainActivity2 extends AppCompatActivity {
                 String mesajPrimit = data.getStringExtra("mesaj_retur");
                 int sumaPrimita = data.getIntExtra("valoare_suma", 0);
 
-                // Afișăm totul într-un Toast
                 Toast.makeText(this, mesajPrimit + sumaPrimita, Toast.LENGTH_LONG).show();
             }
         }
