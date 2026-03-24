@@ -2,8 +2,9 @@ package com.example.laborator04;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +12,10 @@ import java.util.List;
 public class DefaultActivity extends AppCompatActivity {
 
     private List<DispozitivLaptop> laptopList = new ArrayList<>();
-    private ArrayAdapter<DispozitivLaptop> adapter;
+    private LaptopAdapter adapter;
     private ListView lvLaptops;
+
+    private int pozitieEditata = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,33 +24,29 @@ public class DefaultActivity extends AppCompatActivity {
 
         lvLaptops = findViewById(R.id.lvLaptops);
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, laptopList);
+        adapter = new LaptopAdapter(this, R.layout.item_laptop, laptopList);
         lvLaptops.setAdapter(adapter);
 
-        lvLaptops.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                DispozitivLaptop laptopSelectat = laptopList.get(position);
-                Toast.makeText(DefaultActivity.this,
-                        "Detalii: " + laptopSelectat.toString(),
-                        Toast.LENGTH_LONG).show();
-            }
+        lvLaptops.setOnItemClickListener((parent, view, position, id) -> {
+            pozitieEditata = position; // Salvăm poziția
+            DispozitivLaptop laptopDeEditat = laptopList.get(position);
+
+            Intent intent = new Intent(DefaultActivity.this, AddLaptopActivity.class);
+            intent.putExtra("laptop_edit", laptopDeEditat);
+            startActivityForResult(intent, 200); // 200 = Cod pentru Editare
         });
 
-        lvLaptops.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                laptopList.remove(position);
-                adapter.notifyDataSetChanged();
-                Toast.makeText(DefaultActivity.this, "Laptop eliminat!", Toast.LENGTH_SHORT).show();
-                return true;
-            }
+        lvLaptops.setOnItemLongClickListener((parent, view, position, id) -> {
+            laptopList.remove(position);
+            adapter.notifyDataSetChanged();
+            Toast.makeText(this, "Laptop eliminat!", Toast.LENGTH_SHORT).show();
+            return true;
         });
 
         Button btnAdd = findViewById(R.id.btnOpenAdd);
         btnAdd.setOnClickListener(v -> {
             Intent intent = new Intent(DefaultActivity.this, AddLaptopActivity.class);
-            startActivityForResult(intent, 100);
+            startActivityForResult(intent, 100); // 100 = Cod pentru Adăugare
         });
     }
 
@@ -55,15 +54,23 @@ public class DefaultActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
-            Bundle bundle = data.getExtras();
-            if (bundle != null) {
-                DispozitivLaptop laptopPrimit = (DispozitivLaptop) bundle.getSerializable("laptop_obiect");
+        if (resultCode == RESULT_OK && data != null) {
+            DispozitivLaptop laptopPrimit = data.getParcelableExtra("laptop_obiect");
 
-                if (laptopPrimit != null) {
+            if (laptopPrimit != null) {
+                if (requestCode == 100) {
                     laptopList.add(laptopPrimit);
-                    adapter.notifyDataSetChanged();
+                    Toast.makeText(this, "Laptop adăugat!", Toast.LENGTH_SHORT).show();
                 }
+                else if (requestCode == 200) {
+                    if (pozitieEditata != -1) {
+                        laptopList.set(pozitieEditata, laptopPrimit);
+                        pozitieEditata = -1; // Resetăm variabila
+                        Toast.makeText(this, "Laptop modificat!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                adapter.notifyDataSetChanged();
             }
         }
     }

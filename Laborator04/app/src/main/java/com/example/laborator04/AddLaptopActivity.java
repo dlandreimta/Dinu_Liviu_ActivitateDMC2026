@@ -21,57 +21,80 @@ public class AddLaptopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_laptop);
 
+        // 1. Identificăm toate componentele vizuale
+        EditText etModel = findViewById(R.id.etModel);
+        EditText etDate = findViewById(R.id.etDate);
         Spinner spRam = findViewById(R.id.spRam);
+        Switch swKeyboard = findViewById(R.id.swKeyboard);
+        RadioGroup rgScreen = findViewById(R.id.rgScreenType);
+        RatingBar rbPrice = findViewById(R.id.rbPrice);
+        Button btnSave = findViewById(R.id.btnSave);
+
+        // 2. Configurare Spinner RAM
         Integer[] ramOptions = {8, 16, 32, 64};
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, ramOptions);
         spRam.setAdapter(adapter);
 
-        EditText etDate = findViewById(R.id.etDate);
+        // 3. LOGICA DE EDITARE: Verificăm dacă am primit un obiect pentru modificare
+        // Folosim cheia "laptop_edit" pe care am setat-o în DefaultActivity
+        DispozitivLaptop laptopDeEditat = getIntent().getParcelableExtra("laptop_edit");
+
+        if (laptopDeEditat != null) {
+            // Dacă există, "umplem" formularul cu datele lui
+            etModel.setText(laptopDeEditat.getModel());
+            swKeyboard.setChecked(laptopDeEditat.isAreTastaturaIluminata());
+            rbPrice.setRating((float) (laptopDeEditat.getPret() / 1000.0));
+
+            // Selectăm RAM-ul corect în Spinner
+            for (int i = 0; i < ramOptions.length; i++) {
+                if (ramOptions[i] == laptopDeEditat.getMemorieRAM()) {
+                    spRam.setSelection(i);
+                    break;
+                }
+            }
+
+            // Selectăm tipul de ecran corect
+            if (laptopDeEditat.getTipEcran() == DispozitivLaptop.TipEcran.OLED) rgScreen.check(R.id.rbOled);
+            else if (laptopDeEditat.getTipEcran() == DispozitivLaptop.TipEcran.AMOLED) rgScreen.check(R.id.rbAmoled);
+            else rgScreen.check(R.id.rbLcd);
+
+            // Setăm data salvată
+            dataSelectata = laptopDeEditat.getDataAchizitie();
+        }
+
+        // Afișăm data (fie cea curentă, fie cea a laptopului de editat)
         etDate.setText(sdf.format(dataSelectata));
 
+        // 4. Configurare Calendar (DatePicker)
         etDate.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
-            int an = calendar.get(Calendar.YEAR);
-            int luna = calendar.get(Calendar.MONTH);
-            int zi = calendar.get(Calendar.DAY_OF_MONTH);
+            calendar.setTime(dataSelectata); // Pornim calendarul de la data deja selectată
 
-            DatePickerDialog picker = new DatePickerDialog(AddLaptopActivity.this,
-                    (view, year, month, dayOfMonth) -> {
-                        calendar.set(year, month, dayOfMonth);
-                        dataSelectata = calendar.getTime();
-                        etDate.setText(sdf.format(dataSelectata));
-                    }, an, luna, zi);
-            picker.show();
+            new DatePickerDialog(AddLaptopActivity.this, (view, year, month, dayOfMonth) -> {
+                calendar.set(year, month, dayOfMonth);
+                dataSelectata = calendar.getTime();
+                etDate.setText(sdf.format(dataSelectata));
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
         });
 
-        Button btnSave = findViewById(R.id.btnSave);
-        btnSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText etModel = findViewById(R.id.etModel);
-                Switch swKeyboard = findViewById(R.id.swKeyboard);
-                RadioGroup rgScreen = findViewById(R.id.rgScreenType);
-                RatingBar rbPrice = findViewById(R.id.rbPrice);
+        // 5. Salvarea datelor
+        btnSave.setOnClickListener(v -> {
+            String model = etModel.getText().toString();
+            int ram = (int) spRam.getSelectedItem();
+            boolean keyboard = swKeyboard.isChecked();
+            double pret = rbPrice.getRating() * 1000.0;
 
-                String model = etModel.getText().toString();
-                int ram = (int) spRam.getSelectedItem();
-                boolean keyboard = swKeyboard.isChecked();
-                double pret = rbPrice.getRating() * 1000.0;
+            DispozitivLaptop.TipEcran tip = DispozitivLaptop.TipEcran.LCD;
+            int selectedId = rgScreen.getCheckedRadioButtonId();
+            if (selectedId == R.id.rbOled) tip = DispozitivLaptop.TipEcran.OLED;
+            else if (selectedId == R.id.rbAmoled) tip = DispozitivLaptop.TipEcran.AMOLED;
 
-                DispozitivLaptop.TipEcran tip = DispozitivLaptop.TipEcran.LCD;
-                if (rgScreen.getCheckedRadioButtonId() == R.id.rbOled) tip = DispozitivLaptop.TipEcran.OLED;
-                if (rgScreen.getCheckedRadioButtonId() == R.id.rbAmoled) tip = DispozitivLaptop.TipEcran.AMOLED;
+            DispozitivLaptop laptopRezultat = new DispozitivLaptop(model, ram, keyboard, pret, tip, dataSelectata);
 
-                DispozitivLaptop laptopNou = new DispozitivLaptop(model, ram, keyboard, pret, tip, dataSelectata);
-
-                Intent intent = new Intent();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("laptop_obiect", laptopNou);
-                intent.putExtras(bundle);
-
-                setResult(RESULT_OK, intent);
-                finish();
-            }
+            Intent intent = new Intent();
+            intent.putExtra("laptop_obiect", laptopRezultat);
+            setResult(RESULT_OK, intent);
+            finish();
         });
     }
 }
