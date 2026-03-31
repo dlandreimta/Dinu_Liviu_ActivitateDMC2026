@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FDFDFD">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp"
+        app:strokeWidth="1dp"
+        app:strokeColor="#E0E0E0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_title"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="28dp"
+                android:textColor="#1A1C1E"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_font_size"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_marginBottom="24dp"
+                android:layout_marginHorizontal="4dp"
+                app:boxStrokeColor="?attr/colorPrimary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFontSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="#1A1C1E"
+                    android:textColorHint="#44474E"
+                    android:minHeight="56dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_text_color"
+                android:textStyle="bold"
+                android:textColor="#44474E"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="4dp"/>
+
+            <RadioGroup
+                android:id="@+id/rgColors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp"
+                android:layout_marginStart="4dp">
+                <RadioButton android:id="@+id/rbBlack" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/color_black" android:checked="true" android:layout_marginEnd="12dp"/>
+                <RadioButton android:id="@+id/rbBlue" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/color_blue" android:layout_marginEnd="12dp"/>
+                <RadioButton android:id="@+id/rbRed" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/color_red" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_bg_color"
+                android:textStyle="bold"
+                android:textColor="#44474E"
+                android:layout_marginBottom="12dp"
+                android:layout_marginStart="4dp"/>
+
+            <RadioGroup
+                android:id="@+id/rgBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                android:layout_marginStart="4dp">
+                <RadioButton android:id="@+id/rbBgLight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/bg_white" android:checked="true" android:layout_marginBottom="4dp"/>
+                <RadioButton android:id="@+id/rbBgGrey" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/bg_grey" />
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSaveSettings"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="@string/btn_save_settings"
+                android:layout_marginHorizontal="16dp"
+                app:cornerRadius="16dp"
+                android:textStyle="bold"
+                app:elevation="2dp"/>
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</LinearLayout>

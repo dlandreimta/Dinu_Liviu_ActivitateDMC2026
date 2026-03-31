@@ -19,6 +19,7 @@
             android:layout_height="50dp"
             android:src="@android:drawable/ic_menu_edit"
             android:layout_gravity="center"
+            android:contentDescription="@string/desc_laptop_icon"
             app:tint="#2196F3" />
 
         <LinearLayout
@@ -32,7 +33,7 @@
                 android:id="@+id/tvModelItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Model Laptop"
+                android:text="@string/default_laptop_model"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="#212121" />
@@ -41,7 +42,7 @@
                 android:id="@+id/tvDetailsItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RAM | Ecran"
+                android:text="@string/default_laptop_details"
                 android:textColor="#757575" />
         </LinearLayout>
 
@@ -50,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="0.00 RON"
+            android:text="@string/default_laptop_price"
             android:textColor="#4CAF50"
             android:textStyle="bold" />
 

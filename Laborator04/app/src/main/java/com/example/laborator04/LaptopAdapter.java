@@ -11,34 +11,48 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 public class LaptopAdapter extends ArrayAdapter<DispozitivLaptop> {
-    private Context context;
-    private int resource;
-    private List<DispozitivLaptop> laptopList;
+    private final Context context;
+    private final int resource;
+
+    static class ViewHolder {
+        TextView tvModel, tvDetails, tvPrice;
+    }
 
     public LaptopAdapter(@NonNull Context context, int resource, @NonNull List<DispozitivLaptop> objects) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
-        this.laptopList = objects;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        ViewHolder holder;
+
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(resource, parent, false);
+            holder = new ViewHolder();
+            holder.tvModel = convertView.findViewById(R.id.tvModelItem);
+            holder.tvDetails = convertView.findViewById(R.id.tvDetailsItem);
+            holder.tvPrice = convertView.findViewById(R.id.tvPriceItem);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        DispozitivLaptop laptop = laptopList.get(position);
-
-        TextView tvModel = convertView.findViewById(R.id.tvModelItem);
-        TextView tvDetails = convertView.findViewById(R.id.tvDetailsItem);
-        TextView tvPrice = convertView.findViewById(R.id.tvPriceItem);
+        DispozitivLaptop laptop = getItem(position);
 
         if (laptop != null) {
-            tvModel.setText(laptop.getModel());
-            tvDetails.setText(laptop.getMemorieRAM() + " GB RAM | " + laptop.getTipEcran());
-            tvPrice.setText(laptop.getPret() + " RON");
+            holder.tvModel.setText(laptop.getModel());
+
+            String details = context.getString(R.string.laptop_details_format,
+                    laptop.getMemorieRAM(),
+                    laptop.getTipEcran());
+            holder.tvDetails.setText(details);
+
+            String price = context.getString(R.string.laptop_price_format,
+                    laptop.getPret());
+            holder.tvPrice.setText(price);
         }
 
         return convertView;

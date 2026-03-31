@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA">
+    android:background="#FDFDFD">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="20dp">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="0dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E0E0E0"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
@@ -25,83 +27,112 @@
                 android:padding="24dp">
 
                 <TextView
+                    android:id="@+id/tvConfigTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Configurare Laptop"
-                    android:textSize="24sp"
+                    android:text="@string/config_title"
+                    android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#212121"
+                    android:textColor="#1A1C1E"
                     android:layout_marginBottom="24dp"/>
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Model Dispozitiv" android:textStyle="bold" android:textColor="#757575"/>
-                <EditText
-                    android:id="@+id/etModel"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Ex: Dell XPS 15"
-                    android:backgroundTint="#2196F3"
-                    android:layout_marginBottom="16dp"/>
+                    android:hint="@string/hint_model"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_marginBottom="16dp"
+                    app:hintTextColor="#44474E">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etModel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#1A1C1E"
+                        android:textColorHint="#44474E" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Capacitate RAM" android:textStyle="bold" android:textColor="#757575"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_ram"
+                    android:textStyle="bold"
+                    android:textColor="#44474E"
+                    android:layout_marginBottom="8dp"/>
                 <Spinner
                     android:id="@+id/spRam"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="52dp"
                     android:layout_marginBottom="16dp"
                     android:background="@android:drawable/btn_dropdown"/>
 
-                <Switch
-                    android:id="@+id/swKeyboard"
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/cbKeyboard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tastatură Iluminată RGB"
-                    android:paddingVertical="12dp"
-                    android:layout_marginBottom="16dp"
-                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+                    android:text="@string/label_keyboard"
+                    android:textColor="#1A1C1E"
+                    android:layout_marginBottom="16dp" />
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tehnologie Ecran" android:textStyle="bold" android:textColor="#757575"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_screen"
+                    android:textStyle="bold"
+                    android:textColor="#44474E"
+                    android:layout_marginBottom="8dp"/>
                 <RadioGroup
                     android:id="@+id/rgScreenType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginBottom="16dp">
-                    <RadioButton android:id="@+id/rbLcd" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LCD" android:layout_marginEnd="24dp"/>
-                    <RadioButton android:id="@+id/rbOled" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="OLED"/>
-                    <RadioButton android:id="@+id/rbAmoled" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="AMOLED"/>
+                    <RadioButton android:id="@+id/rbLcd" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/screen_lcd" android:textColor="#1A1C1E" android:layout_marginEnd="16dp"/>
+                    <RadioButton android:id="@+id/rbOled" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/screen_oled" android:textColor="#1A1C1E" android:layout_marginEnd="16dp"/>
+                    <RadioButton android:id="@+id/rbAmoled" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/screen_amoled" android:textColor="#1A1C1E"/>
                 </RadioGroup>
 
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Evaluare Performanță" android:textStyle="bold" android:textColor="#757575"/>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_date"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_marginBottom="16dp"
+                    app:hintTextColor="#44474E">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:clickable="true"
+                        android:textColor="#1A1C1E"
+                        android:textColorHint="#44474E" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_rating"
+                    android:textStyle="bold"
+                    android:textColor="#44474E"
+                    android:layout_gravity="center_horizontal"/>
                 <RatingBar
                     android:id="@+id/rbPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="?android:attr/ratingBarStyleIndicator"
-                    android:isIndicator="false"
                     android:numStars="5"
                     android:stepSize="1"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="32dp"/>
+                    android:layout_marginBottom="24dp"/>
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnSave"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
-                    android:text="SALVEAZĂ ÎN BAZA DE DATE"
-                    android:backgroundTint="#4CAF50"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold"
-                    app:cornerRadius="8dp"/>
-                <EditText
-                    android:id="@+id/etDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Selectează data achiziției"
-                    android:focusable="false"
-                    android:clickable="true"
-                    android:layout_marginTop="10dp" />
+                    android:text="@string/btn_save"
+                    app:cornerRadius="12dp"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
