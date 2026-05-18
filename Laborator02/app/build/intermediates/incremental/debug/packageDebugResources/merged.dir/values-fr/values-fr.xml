@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Laborateur</string>
+    <string name="hint_input">Introducee namee</string>
+    <string name="text_button">Apase-moa</string>
+    <string name="text_titlu">Bonjour le monde!</string>
+</resources>

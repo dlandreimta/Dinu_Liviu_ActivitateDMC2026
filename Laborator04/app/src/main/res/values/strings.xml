@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Laptop Manager</string>
+
+    <string name="laptop_details_format">%1$d GB RAM | %2$s</string>
+    <string name="laptop_price_format">%1$.2f RON</string>
+
+    <string name="msg_added_favorites">Adaugat la favorite!</string>
+    <string name="desc_laptop_icon">Iconita dispozitiv</string>
+    <string name="default_laptop_model">Model Laptop</string>
+    <string name="default_laptop_details">RAM | Ecran</string>
+    <string name="default_laptop_price">0.00 RON</string>
+
+    <string name="settings_title">Personalizare Aspect</string>
+    <string name="hint_font_size">Dimensiune Text (ex: 18)</string>
+    <string name="label_text_color">Culoare Text</string>
+    <string name="color_black">Negru</string>
+    <string name="color_blue">Albastru</string>
+    <string name="color_red">Rosu</string>
+    <string name="label_bg_color">Culoare Fundal Aplicatie</string>
+    <string name="bg_white">Alb Curat</string>
+    <string name="bg_grey">Gri Modern</string>
+    <string name="btn_save_settings">SALVEAZA SETARI</string>
+
+    <string name="config_title">Configurare Laptop</string>
+    <string name="hint_model">Model Dispozitiv</string>
+    <string name="label_ram">Memorie RAM</string>
+    <string name="label_keyboard">Tastatura Iluminata</string>
+    <string name="label_screen">Tehnologie Ecran</string>
+    <string name="screen_lcd">LCD</string>
+    <string name="screen_oled">OLED</string>
+    <string name="screen_amoled">AMOLED</string>
+    <string name="hint_date">Data achizitiei</string>
+    <string name="label_rating">Rating Performanta</string>
+    <string name="btn_save">SALVEAZA</string>
+
+    <string name="desc_add_laptop">Buton pentru adaugarea unui laptop nou</string>
+</resources>

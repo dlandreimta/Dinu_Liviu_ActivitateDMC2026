@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Laborator 10 - Weather</string>
+    <string name="hint_city">Introduceți orașul</string>
+    <string name="btn_search">Caută</string>
+    <string name="error_empty">Vă rugăm să introduceți numele unui oraș.</string>
+    <string name="error_not_found">Orașul nu a fost găsit.</string>
+    <string name="error_generic">Eroare la obținerea datelor.</string>
+</resources>

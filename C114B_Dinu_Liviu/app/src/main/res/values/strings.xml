@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">C114B_Dinu_Liviu</string>
+    <string name="item_eveniment_denumire">Denumire: %1$s</string>
+    <string name="item_eveniment_locatie">Locatie: %1$s</string>
+    <string name="item_eveniment_descriere">Descriere: %1$s</string>
+    <string name="item_eveniment_data">Data: %1$s</string>
+</resources>

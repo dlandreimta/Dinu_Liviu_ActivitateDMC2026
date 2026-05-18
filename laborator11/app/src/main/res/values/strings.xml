@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">laborator11</string>
+    <string-array name="chart_types">
+        <item>Bar Chart</item>
+        <item>Column Chart</item>
+        <item>Pie Chart</item>
+    </string-array>
+</resources>

@@ -1,0 +1,20 @@
+com.example.myapplication
+color black
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id button
+id editTextText
+id main
+id textView
+layout activity_main
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string hint_input
+string text_button
+string text_titlu
+style Base_Theme_MyApplication
+style Theme_MyApplication
+xml backup_rules
+xml data_extraction_rules
